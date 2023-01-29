@@ -1,0 +1,13 @@
+<div><li class="film-list__item">
+    <a href="#" class="film-list__link">
+        <img class="film-list__img" src="https://image.tmdb.org/t/p/w500/${poster_path}" alt="${title}" />
+        <div class="film-list__box">
+            <h2 class="film-list__title">${title}</h2>
+            <p class="film-list__genres">${genreArrayShort} <span class="film-list__date"></span>${releaseDate}</p>
+        </div>
+    </a>
+
+    <button data-add-to-queue="${id}">Add to queue</button>
+    <button>Add to watched</button>
+</li>
+</div>
