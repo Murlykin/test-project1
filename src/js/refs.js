@@ -1,7 +1,9 @@
-export default {
-  
-  filmotekaList: document.querySelector('#filmoteka-list'),
-  libraryList: document.querySelector('#library-list'),
-  header: document.querySelector('.header'),
-  subtitle: document.querySelector('.filmoteka__subtitle'),
+export { refs };
+
+const refs = {
+  IconCloseHref: document
+    .querySelector('.button-close__img')
+    .getAttribute('href'),
+  backdrop: document.querySelector('.backdrop'),
+  filmContainer: document.querySelector('.film__container'),
 };
