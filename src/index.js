@@ -2,18 +2,20 @@
 import './loader';
 import './js/add-to-localstorage-btn';
 
-
 import './js/pagination';
 import './js/on-search.js';
-import { createMarkup } from './markup/markupfilmcard';
-import getFilmCard from './js/get-film-card';
+// import { createMarkup } from './markup/markupfilmcard';
+// import getFilmCard from './js/get-film-card';
 import './js/modal-open-close';
 import './js/api';
-import './js/button-up'
 
-getFilmCard().then(resp => {
-  createMarkup(resp.results);
-});
+import './js/modat-team';
+
+import './js/button-up';
+
+// getFilmCard().then(resp => {
+//   createMarkup(resp.results);
+// });
 
 // const filmComtainer = document.querySelector('.film__container');
 
@@ -47,3 +49,5 @@ getFilmCard().then(resp => {
 
 //   filmComtainer.insertAdjacentHTML('beforeend', filmCard);
 // }
+
+console.log('index.js loaded');

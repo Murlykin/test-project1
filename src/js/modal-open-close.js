@@ -4,8 +4,12 @@ import { refs } from './refs';
 import { onCreateMarkup } from './modal-create-markup';
 export { onCloseModal };
 
-import {delListeners} from './add-to-localstorage-btn'
+// ------------------------------------------------------
 
+import { openTrailer } from './trailer';
+// -----------------------------------------------------
+
+import { delListeners } from './add-to-localstorage-btn';
 
 const BASE_POSTER_URL = 'https://image.tmdb.org/t/p/w500/';
 
@@ -62,11 +66,29 @@ function onOpenModal(e) {
         data.overview = 'Description not found';
       }
       onCreateMarkup(data);
+      // =================VIDEO================
+
+      document.getElementById(filmId).addEventListener('click', () => {
+        openTrailer(filmId);
+      });
     });
+  // add/remove is-active class on buttons
+  // if (addToWatchedButton.textContent.toLowerCase() === 'add to watched') {
+  //   addToWatchedButton.classList.remove('is-active');
+  // } else {
+  //   addToWatchedButton.classList.add('is-active');
+  // }
+
+  // if (queueBtn.textContent.toLowerCase() === 'add to queue') {
+  //   queueBtn.classList.remove('is-active');
+  // } else {
+  //   queueBtn.classList.add('is-active');
+  // }
 }
 
-function onCloseModal() {
+// --------------------------------------------------------------------------------
 
+function onCloseModal() {
   delListeners();
 
   window.removeEventListener('keydown', onEscKeyPress);

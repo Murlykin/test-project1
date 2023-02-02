@@ -36,9 +36,15 @@ function onBtnQueueClick() {
 }
 
 function loadFilms(key, currentPage) {
+  console.log('load');
   try {
     const getLoadedFilms = localStorage.getItem(key);
     const parseLoadedFilms = JSON.parse(getLoadedFilms);
+    console.log(!parseLoadedFilms);
+    if (!parseLoadedFilms || parseLoadedFilms.length == 0) {
+      localRefs.libraryContainer.innerHTML = `<h2 style='margin: auto'>No films found!</h2>`;
+      return [];
+    }
     // const page = parseLoadedFilms.slice(
     //   (p - currentPage) * PER_PAGE,
     //   (p - currentPage) * PER_PAGE + PER_PAGE
@@ -56,9 +62,9 @@ function loadFilms(key, currentPage) {
 export function refreshPage() {
   localRefs.libraryContainer.innerHTML = '';
   if (localRefs.btnQueue.classList.contains('activeBtn')) {
-    createMarkup(loadFilms('queue', currentPage));
+    createMarkup(loadFilms('queue', 1));
   } else {
-    createMarkup(loadFilms('watched', currentPage));
+    createMarkup(loadFilms('watched', 1));
   }
 }
 
@@ -66,7 +72,7 @@ export function refreshPage() {
 // currentPage. створити функцію, що примає "сторінку" і робить слайс з масиву
 // currentPage. дадати зміну класу по слухачам
 
-//Інтерсекшн обзервер та скрол
+// //Інтерсекшн обзервер та скрол
 
 function onObserve(currentPage, key) {
   createMarkup(loadFilms(key, currentPage));
@@ -77,8 +83,7 @@ let options = {
   threshold: 0.5,
 };
 
-let observer = new IntersectionObserver(onScroll, options);
-observer.observe(document.querySelector('.film-list__item:last-child'));
+const lastFilmListItem = document.querySelector('.film-list__item:last-child');
 
 function onScroll(entries, observer) {
   let key = '';
@@ -87,18 +92,24 @@ function onScroll(entries, observer) {
   } else {
     key = 'queue';
   }
-  //   const data = localStorage.getItem(key);
-  //   const parsedData = JSON.parse(data);
+  const data = localStorage.getItem(key);
+  const parsedData = JSON.parse(data);
 
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       currentPage += 1;
 
-      //   if (currentPage * PER_PAGE > parsedData.length) {
-      //     observer.unobserve(entry.target);
-      //     return;
-      //   }
+      // if (currentPage * PER_PAGE > parsedData.length) {
+      //   observer.unobserve(entry.target);
+      //   return;
+      // }
       onObserve(currentPage, key);
     }
   });
+}
+
+let observer = new IntersectionObserver(onScroll, options);
+
+if (lastFilmListItem) {
+  observer.observe(lastFilmListItem);
 }
