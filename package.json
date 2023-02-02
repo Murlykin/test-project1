@@ -2,10 +2,10 @@
   "name": "parcel-project-template",
   "version": "2.0.0",
   "description": "",
-  "homepage": "https://DeadlyPants11.github.io/project",
+  "homepage": "https://github.com/Murlykin/test-project1",
   "scripts": {
     "start": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /project/"
+    "build": "parcel build src/*.html --public-url /test-project1/"
   },
   "repository": {
     "type": "git",
